@@ -213,108 +213,61 @@ def begin_learning(arch, dataloader, learnrate, epoch, gpu, save_dir, chkp):
     logger.info('Switching neural model to train mode')
     brain[arch].train()
     print_time = 10
-    if cuda is True:
+    if cuda and gpu is True:
         logger.info('Running on GPU mode')
         brain[arch].cuda()
-        criterion = nn.NLLLoss()
-        optimizer = optim.Adam(brain[arch].classifier.parameters(), learnrate)
-        if chkp is not None:
-            optimizer.load_state_dict(chkp['optimizer_state'])
-        training_start = time()
-        for step in range(epoch):
-            running_loss = 0
-            for itr, (inputs, labels) in enumerate(dataloader['train_loader']):
-                inputs, labels = Variable(inputs), Variable(labels)
-                inputs, labels = inputs.cuda(), labels.cuda()
-
-                #Clear the gradients from all Variables
-                optimizer.zero_grad()
-                #Make a forward pass
-                output = brain[arch].forward(inputs)
-                #Calculate loss
-                loss = criterion(output, labels)
-                #Perform back propagation
-                loss.backward()
-                optimizer.step()
-                running_loss += loss.data[0]
-
-                if (itr+1)%print_time == 0:
-                    logger.info('Switching neural model to eval mode')
-                    brain[arch].eval()
-                    accuracy = 0
-                    validation_loss = 0
-                    for v_input, v_label in iter(dataloader['valid_loader']):
-                        v_input, v_label = Variable(v_input, volatile=True), Variable(v_label, volatile=True)
-                        v_input, v_label = v_input.cuda(), v_label.cuda()
-
-                        output = brain[arch].forward(v_input)
-                        validation_loss += criterion(output, v_label).data[0]
-
-                        ps = torch.exp(output).data
-
-                        equality = (v_label.data == ps.max(1)[1])
-
-                        accuracy += equality.type_as(torch.FloatTensor()).mean()
-                        print("Epoch: {}/{}...".format(step+1, epoch),
-                        "Train loss: {:.3f}".format(running_loss/print_time),
-                        "Validation loss: {:.3f}".format(validation_loss/len(dataloader['valid_loader'])),
-                        "Validation Accuracy: {:.3f}".format(accuracy/len(dataloader['valid_loader'])))
-                    running_loss = 0
-                    best_accuracy = accuracy/len(dataloader['valid_loader'])
-                    save_checkpoint(arch, best_accuracy, optimizer, save_dir)
-                    logger.info('Switching neural model back to train mode')
-                    brain[arch].train()
-        logger.info('Training time: {}'.format(time()-training_start))
     else:
         logger.info('Running on CPU mode')
         brain[arch].cpu()
-        criterion = nn.NLLLoss()
-        optimizer = optim.Adam(brain[arch].classifier.parameters(), learnrate)
-        if chkp is not None:
-            optimizer.state_dict = chkp['optimizer_state']
-        training_start = time()
-        for step in range(epoch):
-            running_loss = 0
-            for itr, (inputs, labels) in enumerate(dataloader['train_loader']):
-                inputs, labels = Variable(inputs), Variable(labels)
+    criterion = nn.NLLLoss()
+    optimizer = optim.Adam(brain[arch].classifier.parameters(), learnrate)
+    if chkp is not None:
+        optimizer.load_state_dict(chkp['optimizer_state'])
+    training_start = time()
+    for step in range(epoch):
+        running_loss = 0
+        for itr, (inputs, labels) in enumerate(dataloader['train_loader']):
+            inputs, labels = Variable(inputs), Variable(labels)
+            inputs, labels = inputs.cuda(), labels.cuda()
 
-                #Clear the gradients from all Variables
-                optimizer.zero_grad()
-                #Make a forward pass
-                output = brain[arch].forward(inputs)
-                #Calculate loss
-                loss = criterion(output, labels)
-                #Perform back propagation
-                loss.backward()
-                optimizer.step()
-                running_loss += loss.data[0]
+            #Clear the gradients from all Variables
+            optimizer.zero_grad()
+            #Make a forward pass
+            output = brain[arch].forward(inputs)
+            #Calculate loss
+            loss = criterion(output, labels)
+            #Perform back propagation
+            loss.backward()
+            optimizer.step()
+            running_loss += loss.data[0]
 
-                if (itr+1)%print_time == 0:
-                    logger.info('Switching neural model to eval mode')
-                    brain[arch].eval()
-                    accuracy = 0
-                    validation_loss = 0
-                    for v_input, v_label in iter(dataloader['valid_loader']):
-                        v_input, v_label = Variable(v_input, volatile=True), Variable(v_label, volatile=True)
+            if (itr+1)%print_time == 0:
+                logger.info('Switching neural model to eval mode')
+                brain[arch].eval()
+                accuracy = 0
+                validation_loss = 0
+                for v_input, v_label in iter(dataloader['valid_loader']):
+                    v_input, v_label = Variable(v_input, volatile=True), Variable(v_label, volatile=True)
+                    v_input, v_label = v_input.cuda(), v_label.cuda()
 
-                        output = brain[arch].forward(v_input)
-                        validation_loss += criterion(output, v_label).data[0]
+                    output = brain[arch].forward(v_input)
+                    validation_loss += criterion(output, v_label).data[0]
 
-                        ps = torch.exp(output).data[0]
+                    ps = torch.exp(output).data
 
-                        equality = (v_label.data == ps.max(1)[1])
+                    equality = (v_label.data == ps.max(1)[1])
 
-                        accuracy += equality.type_as(torch.FloatTensor()).mean()
-                        print("Epoch: {}/{}...".format(step+1, epoch),
-                        "Train loss: {:.3f}".format(running_loss/print_time),
-                        "Validation loss: {:.3f}".format(validation_loss/len(dataloader['valid_loader'])),
-                        "Validation Accuracy: {:.3f}".format(accuracy/len(dataloader['valid_loader'])))
-                    running_loss = 0
-                    best_accuracy = accuracy/len(dataloader['valid_loader'])
-                    save_checkpoint(arch, best_accuracy, optimizer, save_dir)
-                    logger.info('Switching neural model back to train mode')
-                    brain[arch].train()
-        logger.info('Training time: {:.3f}'.format(time()-training_start))
+                    accuracy += equality.type_as(torch.FloatTensor()).mean()
+                    print("Epoch: {}/{}...".format(step+1, epoch),
+                    "Train loss: {:.3f}".format(running_loss/print_time),
+                    "Validation loss: {:.3f}".format(validation_loss/len(dataloader['valid_loader'])),
+                    "Validation Accuracy: {:.3f}".format(accuracy/len(dataloader['valid_loader'])))
+                running_loss = 0
+                best_accuracy = accuracy/len(dataloader['valid_loader'])
+                save_checkpoint(arch, best_accuracy, optimizer, save_dir)
+                logger.info('Switching neural model back to train mode')
+                brain[arch].train()
+    logger.info('Training time: {}'.format(time()-training_start))
 
 def save_checkpoint(arch, best_accuracy, optimizer, save_dir):
     """
