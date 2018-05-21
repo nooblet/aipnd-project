@@ -159,12 +159,9 @@ def predict(model, img, top_k, gpu):
     img.unsqueeze_(0)
     data = Variable(img, volatile=True)
     data = data.type(torch.FloatTensor)
-    if gpu is True:
-        if torch.cuda.is_available() is True:
-            model.cuda()
-            data = data.cuda()
-        else:
-            model.cpu()
+    if gpu and torch.cuda.is_available() is True:
+        model.cuda()
+        data = data.cuda()
     else:
         model.cpu()
     
