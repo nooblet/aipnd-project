@@ -11813,6 +11813,7 @@ div#notebook {
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sb</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">json</span>
 </pre></div>
 
 </div>
@@ -11894,9 +11895,7 @@ div#notebook {
 <div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">json</span>
-
-<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;cat_to_name.json&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;cat_to_name.json&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
     <span class="n">cat_to_name</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
 </pre></div>
 
@@ -11926,7 +11925,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># TODO: Build and train your network</span>
@@ -11944,671 +11943,67 @@ div#notebook {
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[6]:</div>
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>Downloading: &#34;https://download.pytorch.org/models/vgg16-397923af.pth&#34; to /root/.torch/models/vgg16-397923af.pth
+100%|██████████| 553433881/553433881 [00:17&lt;00:00, 31262211.48it/s]
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[5]:</div>
 
 
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>DenseNet(
+<pre>VGG(
   (features): Sequential(
-    (conv0): Conv2d(3, 96, kernel_size=(7, 7), stride=(2, 2), padding=(3, 3), bias=False)
-    (norm0): BatchNorm2d(96, eps=1e-05, momentum=0.1, affine=True)
-    (relu0): ReLU(inplace)
-    (pool0): MaxPool2d(kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), dilation=(1, 1), ceil_mode=False)
-    (denseblock1): _DenseBlock(
-      (denselayer1): _DenseLayer(
-        (norm.1): BatchNorm2d(96, eps=1e-05, momentum=0.1, affine=True)
-        (relu.1): ReLU(inplace)
-        (conv.1): Conv2d(96, 192, kernel_size=(1, 1), stride=(1, 1), bias=False)
-        (norm.2): BatchNorm2d(192, eps=1e-05, momentum=0.1, affine=True)
-        (relu.2): ReLU(inplace)
-        (conv.2): Conv2d(192, 48, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
-      )
-      (denselayer2): _DenseLayer(
-        (norm.1): BatchNorm2d(144, eps=1e-05, momentum=0.1, affine=True)
-        (relu.1): ReLU(inplace)
-        (conv.1): Conv2d(144, 192, kernel_size=(1, 1), stride=(1, 1), bias=False)
-        (norm.2): BatchNorm2d(192, eps=1e-05, momentum=0.1, affine=True)
-        (relu.2): ReLU(inplace)
-        (conv.2): Conv2d(192, 48, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
-      )
-      (denselayer3): _DenseLayer(
-        (norm.1): BatchNorm2d(192, eps=1e-05, momentum=0.1, affine=True)
-        (relu.1): ReLU(inplace)
-        (conv.1): Conv2d(192, 192, kernel_size=(1, 1), stride=(1, 1), bias=False)
-        (norm.2): BatchNorm2d(192, eps=1e-05, momentum=0.1, affine=True)
-        (relu.2): ReLU(inplace)
-        (conv.2): Conv2d(192, 48, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
-      )
-      (denselayer4): _DenseLayer(
-        (norm.1): BatchNorm2d(240, eps=1e-05, momentum=0.1, affine=True)
-        (relu.1): ReLU(inplace)
-        (conv.1): Conv2d(240, 192, kernel_size=(1, 1), stride=(1, 1), bias=False)
-        (norm.2): BatchNorm2d(192, eps=1e-05, momentum=0.1, affine=True)
-        (relu.2): ReLU(inplace)
-        (conv.2): Conv2d(192, 48, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
-      )
-      (denselayer5): _DenseLayer(
-        (norm.1): BatchNorm2d(288, eps=1e-05, momentum=0.1, affine=True)
-        (relu.1): ReLU(inplace)
-        (conv.1): Conv2d(288, 192, kernel_size=(1, 1), stride=(1, 1), bias=False)
-        (norm.2): BatchNorm2d(192, eps=1e-05, momentum=0.1, affine=True)
-        (relu.2): ReLU(inplace)
-        (conv.2): Conv2d(192, 48, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
-      )
-      (denselayer6): _DenseLayer(
-        (norm.1): BatchNorm2d(336, eps=1e-05, momentum=0.1, affine=True)
-        (relu.1): ReLU(inplace)
-        (conv.1): Conv2d(336, 192, kernel_size=(1, 1), stride=(1, 1), bias=False)
-        (norm.2): BatchNorm2d(192, eps=1e-05, momentum=0.1, affine=True)
-        (relu.2): ReLU(inplace)
-        (conv.2): Conv2d(192, 48, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
-      )
-    )
-    (transition1): _Transition(
-      (norm): BatchNorm2d(384, eps=1e-05, momentum=0.1, affine=True)
-      (relu): ReLU(inplace)
-      (conv): Conv2d(384, 192, kernel_size=(1, 1), stride=(1, 1), bias=False)
-      (pool): AvgPool2d(kernel_size=2, stride=2, padding=0, ceil_mode=False, count_include_pad=True)
-    )
-    (denseblock2): _DenseBlock(
-      (denselayer1): _DenseLayer(
-        (norm.1): BatchNorm2d(192, eps=1e-05, momentum=0.1, affine=True)
-        (relu.1): ReLU(inplace)
-        (conv.1): Conv2d(192, 192, kernel_size=(1, 1), stride=(1, 1), bias=False)
-        (norm.2): BatchNorm2d(192, eps=1e-05, momentum=0.1, affine=True)
-        (relu.2): ReLU(inplace)
-        (conv.2): Conv2d(192, 48, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
-      )
-      (denselayer2): _DenseLayer(
-        (norm.1): BatchNorm2d(240, eps=1e-05, momentum=0.1, affine=True)
-        (relu.1): ReLU(inplace)
-        (conv.1): Conv2d(240, 192, kernel_size=(1, 1), stride=(1, 1), bias=False)
-        (norm.2): BatchNorm2d(192, eps=1e-05, momentum=0.1, affine=True)
-        (relu.2): ReLU(inplace)
-        (conv.2): Conv2d(192, 48, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
-      )
-      (denselayer3): _DenseLayer(
-        (norm.1): BatchNorm2d(288, eps=1e-05, momentum=0.1, affine=True)
-        (relu.1): ReLU(inplace)
-        (conv.1): Conv2d(288, 192, kernel_size=(1, 1), stride=(1, 1), bias=False)
-        (norm.2): BatchNorm2d(192, eps=1e-05, momentum=0.1, affine=True)
-        (relu.2): ReLU(inplace)
-        (conv.2): Conv2d(192, 48, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
-      )
-      (denselayer4): _DenseLayer(
-        (norm.1): BatchNorm2d(336, eps=1e-05, momentum=0.1, affine=True)
-        (relu.1): ReLU(inplace)
-        (conv.1): Conv2d(336, 192, kernel_size=(1, 1), stride=(1, 1), bias=False)
-        (norm.2): BatchNorm2d(192, eps=1e-05, momentum=0.1, affine=True)
-        (relu.2): ReLU(inplace)
-        (conv.2): Conv2d(192, 48, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
-      )
-      (denselayer5): _DenseLayer(
-        (norm.1): BatchNorm2d(384, eps=1e-05, momentum=0.1, affine=True)
-        (relu.1): ReLU(inplace)
-        (conv.1): Conv2d(384, 192, kernel_size=(1, 1), stride=(1, 1), bias=False)
-        (norm.2): BatchNorm2d(192, eps=1e-05, momentum=0.1, affine=True)
-        (relu.2): ReLU(inplace)
-        (conv.2): Conv2d(192, 48, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
-      )
-      (denselayer6): _DenseLayer(
-        (norm.1): BatchNorm2d(432, eps=1e-05, momentum=0.1, affine=True)
-        (relu.1): ReLU(inplace)
-        (conv.1): Conv2d(432, 192, kernel_size=(1, 1), stride=(1, 1), bias=False)
-        (norm.2): BatchNorm2d(192, eps=1e-05, momentum=0.1, affine=True)
-        (relu.2): ReLU(inplace)
-        (conv.2): Conv2d(192, 48, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
-      )
-      (denselayer7): _DenseLayer(
-        (norm.1): BatchNorm2d(480, eps=1e-05, momentum=0.1, affine=True)
-        (relu.1): ReLU(inplace)
-        (conv.1): Conv2d(480, 192, kernel_size=(1, 1), stride=(1, 1), bias=False)
-        (norm.2): BatchNorm2d(192, eps=1e-05, momentum=0.1, affine=True)
-        (relu.2): ReLU(inplace)
-        (conv.2): Conv2d(192, 48, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
-      )
-      (denselayer8): _DenseLayer(
-        (norm.1): BatchNorm2d(528, eps=1e-05, momentum=0.1, affine=True)
-        (relu.1): ReLU(inplace)
-        (conv.1): Conv2d(528, 192, kernel_size=(1, 1), stride=(1, 1), bias=False)
-        (norm.2): BatchNorm2d(192, eps=1e-05, momentum=0.1, affine=True)
-        (relu.2): ReLU(inplace)
-        (conv.2): Conv2d(192, 48, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
-      )
-      (denselayer9): _DenseLayer(
-        (norm.1): BatchNorm2d(576, eps=1e-05, momentum=0.1, affine=True)
-        (relu.1): ReLU(inplace)
-        (conv.1): Conv2d(576, 192, kernel_size=(1, 1), stride=(1, 1), bias=False)
-        (norm.2): BatchNorm2d(192, eps=1e-05, momentum=0.1, affine=True)
-        (relu.2): ReLU(inplace)
-        (conv.2): Conv2d(192, 48, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
-      )
-      (denselayer10): _DenseLayer(
-        (norm.1): BatchNorm2d(624, eps=1e-05, momentum=0.1, affine=True)
-        (relu.1): ReLU(inplace)
-        (conv.1): Conv2d(624, 192, kernel_size=(1, 1), stride=(1, 1), bias=False)
-        (norm.2): BatchNorm2d(192, eps=1e-05, momentum=0.1, affine=True)
-        (relu.2): ReLU(inplace)
-        (conv.2): Conv2d(192, 48, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
-      )
-      (denselayer11): _DenseLayer(
-        (norm.1): BatchNorm2d(672, eps=1e-05, momentum=0.1, affine=True)
-        (relu.1): ReLU(inplace)
-        (conv.1): Conv2d(672, 192, kernel_size=(1, 1), stride=(1, 1), bias=False)
-        (norm.2): BatchNorm2d(192, eps=1e-05, momentum=0.1, affine=True)
-        (relu.2): ReLU(inplace)
-        (conv.2): Conv2d(192, 48, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
-      )
-      (denselayer12): _DenseLayer(
-        (norm.1): BatchNorm2d(720, eps=1e-05, momentum=0.1, affine=True)
-        (relu.1): ReLU(inplace)
-        (conv.1): Conv2d(720, 192, kernel_size=(1, 1), stride=(1, 1), bias=False)
-        (norm.2): BatchNorm2d(192, eps=1e-05, momentum=0.1, affine=True)
-        (relu.2): ReLU(inplace)
-        (conv.2): Conv2d(192, 48, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
-      )
-    )
-    (transition2): _Transition(
-      (norm): BatchNorm2d(768, eps=1e-05, momentum=0.1, affine=True)
-      (relu): ReLU(inplace)
-      (conv): Conv2d(768, 384, kernel_size=(1, 1), stride=(1, 1), bias=False)
-      (pool): AvgPool2d(kernel_size=2, stride=2, padding=0, ceil_mode=False, count_include_pad=True)
-    )
-    (denseblock3): _DenseBlock(
-      (denselayer1): _DenseLayer(
-        (norm.1): BatchNorm2d(384, eps=1e-05, momentum=0.1, affine=True)
-        (relu.1): ReLU(inplace)
-        (conv.1): Conv2d(384, 192, kernel_size=(1, 1), stride=(1, 1), bias=False)
-        (norm.2): BatchNorm2d(192, eps=1e-05, momentum=0.1, affine=True)
-        (relu.2): ReLU(inplace)
-        (conv.2): Conv2d(192, 48, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
-      )
-      (denselayer2): _DenseLayer(
-        (norm.1): BatchNorm2d(432, eps=1e-05, momentum=0.1, affine=True)
-        (relu.1): ReLU(inplace)
-        (conv.1): Conv2d(432, 192, kernel_size=(1, 1), stride=(1, 1), bias=False)
-        (norm.2): BatchNorm2d(192, eps=1e-05, momentum=0.1, affine=True)
-        (relu.2): ReLU(inplace)
-        (conv.2): Conv2d(192, 48, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
-      )
-      (denselayer3): _DenseLayer(
-        (norm.1): BatchNorm2d(480, eps=1e-05, momentum=0.1, affine=True)
-        (relu.1): ReLU(inplace)
-        (conv.1): Conv2d(480, 192, kernel_size=(1, 1), stride=(1, 1), bias=False)
-        (norm.2): BatchNorm2d(192, eps=1e-05, momentum=0.1, affine=True)
-        (relu.2): ReLU(inplace)
-        (conv.2): Conv2d(192, 48, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
-      )
-      (denselayer4): _DenseLayer(
-        (norm.1): BatchNorm2d(528, eps=1e-05, momentum=0.1, affine=True)
-        (relu.1): ReLU(inplace)
-        (conv.1): Conv2d(528, 192, kernel_size=(1, 1), stride=(1, 1), bias=False)
-        (norm.2): BatchNorm2d(192, eps=1e-05, momentum=0.1, affine=True)
-        (relu.2): ReLU(inplace)
-        (conv.2): Conv2d(192, 48, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
-      )
-      (denselayer5): _DenseLayer(
-        (norm.1): BatchNorm2d(576, eps=1e-05, momentum=0.1, affine=True)
-        (relu.1): ReLU(inplace)
-        (conv.1): Conv2d(576, 192, kernel_size=(1, 1), stride=(1, 1), bias=False)
-        (norm.2): BatchNorm2d(192, eps=1e-05, momentum=0.1, affine=True)
-        (relu.2): ReLU(inplace)
-        (conv.2): Conv2d(192, 48, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
-      )
-      (denselayer6): _DenseLayer(
-        (norm.1): BatchNorm2d(624, eps=1e-05, momentum=0.1, affine=True)
-        (relu.1): ReLU(inplace)
-        (conv.1): Conv2d(624, 192, kernel_size=(1, 1), stride=(1, 1), bias=False)
-        (norm.2): BatchNorm2d(192, eps=1e-05, momentum=0.1, affine=True)
-        (relu.2): ReLU(inplace)
-        (conv.2): Conv2d(192, 48, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
-      )
-      (denselayer7): _DenseLayer(
-        (norm.1): BatchNorm2d(672, eps=1e-05, momentum=0.1, affine=True)
-        (relu.1): ReLU(inplace)
-        (conv.1): Conv2d(672, 192, kernel_size=(1, 1), stride=(1, 1), bias=False)
-        (norm.2): BatchNorm2d(192, eps=1e-05, momentum=0.1, affine=True)
-        (relu.2): ReLU(inplace)
-        (conv.2): Conv2d(192, 48, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
-      )
-      (denselayer8): _DenseLayer(
-        (norm.1): BatchNorm2d(720, eps=1e-05, momentum=0.1, affine=True)
-        (relu.1): ReLU(inplace)
-        (conv.1): Conv2d(720, 192, kernel_size=(1, 1), stride=(1, 1), bias=False)
-        (norm.2): BatchNorm2d(192, eps=1e-05, momentum=0.1, affine=True)
-        (relu.2): ReLU(inplace)
-        (conv.2): Conv2d(192, 48, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
-      )
-      (denselayer9): _DenseLayer(
-        (norm.1): BatchNorm2d(768, eps=1e-05, momentum=0.1, affine=True)
-        (relu.1): ReLU(inplace)
-        (conv.1): Conv2d(768, 192, kernel_size=(1, 1), stride=(1, 1), bias=False)
-        (norm.2): BatchNorm2d(192, eps=1e-05, momentum=0.1, affine=True)
-        (relu.2): ReLU(inplace)
-        (conv.2): Conv2d(192, 48, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
-      )
-      (denselayer10): _DenseLayer(
-        (norm.1): BatchNorm2d(816, eps=1e-05, momentum=0.1, affine=True)
-        (relu.1): ReLU(inplace)
-        (conv.1): Conv2d(816, 192, kernel_size=(1, 1), stride=(1, 1), bias=False)
-        (norm.2): BatchNorm2d(192, eps=1e-05, momentum=0.1, affine=True)
-        (relu.2): ReLU(inplace)
-        (conv.2): Conv2d(192, 48, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
-      )
-      (denselayer11): _DenseLayer(
-        (norm.1): BatchNorm2d(864, eps=1e-05, momentum=0.1, affine=True)
-        (relu.1): ReLU(inplace)
-        (conv.1): Conv2d(864, 192, kernel_size=(1, 1), stride=(1, 1), bias=False)
-        (norm.2): BatchNorm2d(192, eps=1e-05, momentum=0.1, affine=True)
-        (relu.2): ReLU(inplace)
-        (conv.2): Conv2d(192, 48, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
-      )
-      (denselayer12): _DenseLayer(
-        (norm.1): BatchNorm2d(912, eps=1e-05, momentum=0.1, affine=True)
-        (relu.1): ReLU(inplace)
-        (conv.1): Conv2d(912, 192, kernel_size=(1, 1), stride=(1, 1), bias=False)
-        (norm.2): BatchNorm2d(192, eps=1e-05, momentum=0.1, affine=True)
-        (relu.2): ReLU(inplace)
-        (conv.2): Conv2d(192, 48, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
-      )
-      (denselayer13): _DenseLayer(
-        (norm.1): BatchNorm2d(960, eps=1e-05, momentum=0.1, affine=True)
-        (relu.1): ReLU(inplace)
-        (conv.1): Conv2d(960, 192, kernel_size=(1, 1), stride=(1, 1), bias=False)
-        (norm.2): BatchNorm2d(192, eps=1e-05, momentum=0.1, affine=True)
-        (relu.2): ReLU(inplace)
-        (conv.2): Conv2d(192, 48, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
-      )
-      (denselayer14): _DenseLayer(
-        (norm.1): BatchNorm2d(1008, eps=1e-05, momentum=0.1, affine=True)
-        (relu.1): ReLU(inplace)
-        (conv.1): Conv2d(1008, 192, kernel_size=(1, 1), stride=(1, 1), bias=False)
-        (norm.2): BatchNorm2d(192, eps=1e-05, momentum=0.1, affine=True)
-        (relu.2): ReLU(inplace)
-        (conv.2): Conv2d(192, 48, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
-      )
-      (denselayer15): _DenseLayer(
-        (norm.1): BatchNorm2d(1056, eps=1e-05, momentum=0.1, affine=True)
-        (relu.1): ReLU(inplace)
-        (conv.1): Conv2d(1056, 192, kernel_size=(1, 1), stride=(1, 1), bias=False)
-        (norm.2): BatchNorm2d(192, eps=1e-05, momentum=0.1, affine=True)
-        (relu.2): ReLU(inplace)
-        (conv.2): Conv2d(192, 48, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
-      )
-      (denselayer16): _DenseLayer(
-        (norm.1): BatchNorm2d(1104, eps=1e-05, momentum=0.1, affine=True)
-        (relu.1): ReLU(inplace)
-        (conv.1): Conv2d(1104, 192, kernel_size=(1, 1), stride=(1, 1), bias=False)
-        (norm.2): BatchNorm2d(192, eps=1e-05, momentum=0.1, affine=True)
-        (relu.2): ReLU(inplace)
-        (conv.2): Conv2d(192, 48, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
-      )
-      (denselayer17): _DenseLayer(
-        (norm.1): BatchNorm2d(1152, eps=1e-05, momentum=0.1, affine=True)
-        (relu.1): ReLU(inplace)
-        (conv.1): Conv2d(1152, 192, kernel_size=(1, 1), stride=(1, 1), bias=False)
-        (norm.2): BatchNorm2d(192, eps=1e-05, momentum=0.1, affine=True)
-        (relu.2): ReLU(inplace)
-        (conv.2): Conv2d(192, 48, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
-      )
-      (denselayer18): _DenseLayer(
-        (norm.1): BatchNorm2d(1200, eps=1e-05, momentum=0.1, affine=True)
-        (relu.1): ReLU(inplace)
-        (conv.1): Conv2d(1200, 192, kernel_size=(1, 1), stride=(1, 1), bias=False)
-        (norm.2): BatchNorm2d(192, eps=1e-05, momentum=0.1, affine=True)
-        (relu.2): ReLU(inplace)
-        (conv.2): Conv2d(192, 48, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
-      )
-      (denselayer19): _DenseLayer(
-        (norm.1): BatchNorm2d(1248, eps=1e-05, momentum=0.1, affine=True)
-        (relu.1): ReLU(inplace)
-        (conv.1): Conv2d(1248, 192, kernel_size=(1, 1), stride=(1, 1), bias=False)
-        (norm.2): BatchNorm2d(192, eps=1e-05, momentum=0.1, affine=True)
-        (relu.2): ReLU(inplace)
-        (conv.2): Conv2d(192, 48, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
-      )
-      (denselayer20): _DenseLayer(
-        (norm.1): BatchNorm2d(1296, eps=1e-05, momentum=0.1, affine=True)
-        (relu.1): ReLU(inplace)
-        (conv.1): Conv2d(1296, 192, kernel_size=(1, 1), stride=(1, 1), bias=False)
-        (norm.2): BatchNorm2d(192, eps=1e-05, momentum=0.1, affine=True)
-        (relu.2): ReLU(inplace)
-        (conv.2): Conv2d(192, 48, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
-      )
-      (denselayer21): _DenseLayer(
-        (norm.1): BatchNorm2d(1344, eps=1e-05, momentum=0.1, affine=True)
-        (relu.1): ReLU(inplace)
-        (conv.1): Conv2d(1344, 192, kernel_size=(1, 1), stride=(1, 1), bias=False)
-        (norm.2): BatchNorm2d(192, eps=1e-05, momentum=0.1, affine=True)
-        (relu.2): ReLU(inplace)
-        (conv.2): Conv2d(192, 48, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
-      )
-      (denselayer22): _DenseLayer(
-        (norm.1): BatchNorm2d(1392, eps=1e-05, momentum=0.1, affine=True)
-        (relu.1): ReLU(inplace)
-        (conv.1): Conv2d(1392, 192, kernel_size=(1, 1), stride=(1, 1), bias=False)
-        (norm.2): BatchNorm2d(192, eps=1e-05, momentum=0.1, affine=True)
-        (relu.2): ReLU(inplace)
-        (conv.2): Conv2d(192, 48, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
-      )
-      (denselayer23): _DenseLayer(
-        (norm.1): BatchNorm2d(1440, eps=1e-05, momentum=0.1, affine=True)
-        (relu.1): ReLU(inplace)
-        (conv.1): Conv2d(1440, 192, kernel_size=(1, 1), stride=(1, 1), bias=False)
-        (norm.2): BatchNorm2d(192, eps=1e-05, momentum=0.1, affine=True)
-        (relu.2): ReLU(inplace)
-        (conv.2): Conv2d(192, 48, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
-      )
-      (denselayer24): _DenseLayer(
-        (norm.1): BatchNorm2d(1488, eps=1e-05, momentum=0.1, affine=True)
-        (relu.1): ReLU(inplace)
-        (conv.1): Conv2d(1488, 192, kernel_size=(1, 1), stride=(1, 1), bias=False)
-        (norm.2): BatchNorm2d(192, eps=1e-05, momentum=0.1, affine=True)
-        (relu.2): ReLU(inplace)
-        (conv.2): Conv2d(192, 48, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
-      )
-      (denselayer25): _DenseLayer(
-        (norm.1): BatchNorm2d(1536, eps=1e-05, momentum=0.1, affine=True)
-        (relu.1): ReLU(inplace)
-        (conv.1): Conv2d(1536, 192, kernel_size=(1, 1), stride=(1, 1), bias=False)
-        (norm.2): BatchNorm2d(192, eps=1e-05, momentum=0.1, affine=True)
-        (relu.2): ReLU(inplace)
-        (conv.2): Conv2d(192, 48, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
-      )
-      (denselayer26): _DenseLayer(
-        (norm.1): BatchNorm2d(1584, eps=1e-05, momentum=0.1, affine=True)
-        (relu.1): ReLU(inplace)
-        (conv.1): Conv2d(1584, 192, kernel_size=(1, 1), stride=(1, 1), bias=False)
-        (norm.2): BatchNorm2d(192, eps=1e-05, momentum=0.1, affine=True)
-        (relu.2): ReLU(inplace)
-        (conv.2): Conv2d(192, 48, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
-      )
-      (denselayer27): _DenseLayer(
-        (norm.1): BatchNorm2d(1632, eps=1e-05, momentum=0.1, affine=True)
-        (relu.1): ReLU(inplace)
-        (conv.1): Conv2d(1632, 192, kernel_size=(1, 1), stride=(1, 1), bias=False)
-        (norm.2): BatchNorm2d(192, eps=1e-05, momentum=0.1, affine=True)
-        (relu.2): ReLU(inplace)
-        (conv.2): Conv2d(192, 48, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
-      )
-      (denselayer28): _DenseLayer(
-        (norm.1): BatchNorm2d(1680, eps=1e-05, momentum=0.1, affine=True)
-        (relu.1): ReLU(inplace)
-        (conv.1): Conv2d(1680, 192, kernel_size=(1, 1), stride=(1, 1), bias=False)
-        (norm.2): BatchNorm2d(192, eps=1e-05, momentum=0.1, affine=True)
-        (relu.2): ReLU(inplace)
-        (conv.2): Conv2d(192, 48, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
-      )
-      (denselayer29): _DenseLayer(
-        (norm.1): BatchNorm2d(1728, eps=1e-05, momentum=0.1, affine=True)
-        (relu.1): ReLU(inplace)
-        (conv.1): Conv2d(1728, 192, kernel_size=(1, 1), stride=(1, 1), bias=False)
-        (norm.2): BatchNorm2d(192, eps=1e-05, momentum=0.1, affine=True)
-        (relu.2): ReLU(inplace)
-        (conv.2): Conv2d(192, 48, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
-      )
-      (denselayer30): _DenseLayer(
-        (norm.1): BatchNorm2d(1776, eps=1e-05, momentum=0.1, affine=True)
-        (relu.1): ReLU(inplace)
-        (conv.1): Conv2d(1776, 192, kernel_size=(1, 1), stride=(1, 1), bias=False)
-        (norm.2): BatchNorm2d(192, eps=1e-05, momentum=0.1, affine=True)
-        (relu.2): ReLU(inplace)
-        (conv.2): Conv2d(192, 48, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
-      )
-      (denselayer31): _DenseLayer(
-        (norm.1): BatchNorm2d(1824, eps=1e-05, momentum=0.1, affine=True)
-        (relu.1): ReLU(inplace)
-        (conv.1): Conv2d(1824, 192, kernel_size=(1, 1), stride=(1, 1), bias=False)
-        (norm.2): BatchNorm2d(192, eps=1e-05, momentum=0.1, affine=True)
-        (relu.2): ReLU(inplace)
-        (conv.2): Conv2d(192, 48, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
-      )
-      (denselayer32): _DenseLayer(
-        (norm.1): BatchNorm2d(1872, eps=1e-05, momentum=0.1, affine=True)
-        (relu.1): ReLU(inplace)
-        (conv.1): Conv2d(1872, 192, kernel_size=(1, 1), stride=(1, 1), bias=False)
-        (norm.2): BatchNorm2d(192, eps=1e-05, momentum=0.1, affine=True)
-        (relu.2): ReLU(inplace)
-        (conv.2): Conv2d(192, 48, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
-      )
-      (denselayer33): _DenseLayer(
-        (norm.1): BatchNorm2d(1920, eps=1e-05, momentum=0.1, affine=True)
-        (relu.1): ReLU(inplace)
-        (conv.1): Conv2d(1920, 192, kernel_size=(1, 1), stride=(1, 1), bias=False)
-        (norm.2): BatchNorm2d(192, eps=1e-05, momentum=0.1, affine=True)
-        (relu.2): ReLU(inplace)
-        (conv.2): Conv2d(192, 48, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
-      )
-      (denselayer34): _DenseLayer(
-        (norm.1): BatchNorm2d(1968, eps=1e-05, momentum=0.1, affine=True)
-        (relu.1): ReLU(inplace)
-        (conv.1): Conv2d(1968, 192, kernel_size=(1, 1), stride=(1, 1), bias=False)
-        (norm.2): BatchNorm2d(192, eps=1e-05, momentum=0.1, affine=True)
-        (relu.2): ReLU(inplace)
-        (conv.2): Conv2d(192, 48, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
-      )
-      (denselayer35): _DenseLayer(
-        (norm.1): BatchNorm2d(2016, eps=1e-05, momentum=0.1, affine=True)
-        (relu.1): ReLU(inplace)
-        (conv.1): Conv2d(2016, 192, kernel_size=(1, 1), stride=(1, 1), bias=False)
-        (norm.2): BatchNorm2d(192, eps=1e-05, momentum=0.1, affine=True)
-        (relu.2): ReLU(inplace)
-        (conv.2): Conv2d(192, 48, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
-      )
-      (denselayer36): _DenseLayer(
-        (norm.1): BatchNorm2d(2064, eps=1e-05, momentum=0.1, affine=True)
-        (relu.1): ReLU(inplace)
-        (conv.1): Conv2d(2064, 192, kernel_size=(1, 1), stride=(1, 1), bias=False)
-        (norm.2): BatchNorm2d(192, eps=1e-05, momentum=0.1, affine=True)
-        (relu.2): ReLU(inplace)
-        (conv.2): Conv2d(192, 48, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
-      )
-    )
-    (transition3): _Transition(
-      (norm): BatchNorm2d(2112, eps=1e-05, momentum=0.1, affine=True)
-      (relu): ReLU(inplace)
-      (conv): Conv2d(2112, 1056, kernel_size=(1, 1), stride=(1, 1), bias=False)
-      (pool): AvgPool2d(kernel_size=2, stride=2, padding=0, ceil_mode=False, count_include_pad=True)
-    )
-    (denseblock4): _DenseBlock(
-      (denselayer1): _DenseLayer(
-        (norm.1): BatchNorm2d(1056, eps=1e-05, momentum=0.1, affine=True)
-        (relu.1): ReLU(inplace)
-        (conv.1): Conv2d(1056, 192, kernel_size=(1, 1), stride=(1, 1), bias=False)
-        (norm.2): BatchNorm2d(192, eps=1e-05, momentum=0.1, affine=True)
-        (relu.2): ReLU(inplace)
-        (conv.2): Conv2d(192, 48, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
-      )
-      (denselayer2): _DenseLayer(
-        (norm.1): BatchNorm2d(1104, eps=1e-05, momentum=0.1, affine=True)
-        (relu.1): ReLU(inplace)
-        (conv.1): Conv2d(1104, 192, kernel_size=(1, 1), stride=(1, 1), bias=False)
-        (norm.2): BatchNorm2d(192, eps=1e-05, momentum=0.1, affine=True)
-        (relu.2): ReLU(inplace)
-        (conv.2): Conv2d(192, 48, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
-      )
-      (denselayer3): _DenseLayer(
-        (norm.1): BatchNorm2d(1152, eps=1e-05, momentum=0.1, affine=True)
-        (relu.1): ReLU(inplace)
-        (conv.1): Conv2d(1152, 192, kernel_size=(1, 1), stride=(1, 1), bias=False)
-        (norm.2): BatchNorm2d(192, eps=1e-05, momentum=0.1, affine=True)
-        (relu.2): ReLU(inplace)
-        (conv.2): Conv2d(192, 48, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
-      )
-      (denselayer4): _DenseLayer(
-        (norm.1): BatchNorm2d(1200, eps=1e-05, momentum=0.1, affine=True)
-        (relu.1): ReLU(inplace)
-        (conv.1): Conv2d(1200, 192, kernel_size=(1, 1), stride=(1, 1), bias=False)
-        (norm.2): BatchNorm2d(192, eps=1e-05, momentum=0.1, affine=True)
-        (relu.2): ReLU(inplace)
-        (conv.2): Conv2d(192, 48, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
-      )
-      (denselayer5): _DenseLayer(
-        (norm.1): BatchNorm2d(1248, eps=1e-05, momentum=0.1, affine=True)
-        (relu.1): ReLU(inplace)
-        (conv.1): Conv2d(1248, 192, kernel_size=(1, 1), stride=(1, 1), bias=False)
-        (norm.2): BatchNorm2d(192, eps=1e-05, momentum=0.1, affine=True)
-        (relu.2): ReLU(inplace)
-        (conv.2): Conv2d(192, 48, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
-      )
-      (denselayer6): _DenseLayer(
-        (norm.1): BatchNorm2d(1296, eps=1e-05, momentum=0.1, affine=True)
-        (relu.1): ReLU(inplace)
-        (conv.1): Conv2d(1296, 192, kernel_size=(1, 1), stride=(1, 1), bias=False)
-        (norm.2): BatchNorm2d(192, eps=1e-05, momentum=0.1, affine=True)
-        (relu.2): ReLU(inplace)
-        (conv.2): Conv2d(192, 48, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
-      )
-      (denselayer7): _DenseLayer(
-        (norm.1): BatchNorm2d(1344, eps=1e-05, momentum=0.1, affine=True)
-        (relu.1): ReLU(inplace)
-        (conv.1): Conv2d(1344, 192, kernel_size=(1, 1), stride=(1, 1), bias=False)
-        (norm.2): BatchNorm2d(192, eps=1e-05, momentum=0.1, affine=True)
-        (relu.2): ReLU(inplace)
-        (conv.2): Conv2d(192, 48, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
-      )
-      (denselayer8): _DenseLayer(
-        (norm.1): BatchNorm2d(1392, eps=1e-05, momentum=0.1, affine=True)
-        (relu.1): ReLU(inplace)
-        (conv.1): Conv2d(1392, 192, kernel_size=(1, 1), stride=(1, 1), bias=False)
-        (norm.2): BatchNorm2d(192, eps=1e-05, momentum=0.1, affine=True)
-        (relu.2): ReLU(inplace)
-        (conv.2): Conv2d(192, 48, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
-      )
-      (denselayer9): _DenseLayer(
-        (norm.1): BatchNorm2d(1440, eps=1e-05, momentum=0.1, affine=True)
-        (relu.1): ReLU(inplace)
-        (conv.1): Conv2d(1440, 192, kernel_size=(1, 1), stride=(1, 1), bias=False)
-        (norm.2): BatchNorm2d(192, eps=1e-05, momentum=0.1, affine=True)
-        (relu.2): ReLU(inplace)
-        (conv.2): Conv2d(192, 48, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
-      )
-      (denselayer10): _DenseLayer(
-        (norm.1): BatchNorm2d(1488, eps=1e-05, momentum=0.1, affine=True)
-        (relu.1): ReLU(inplace)
-        (conv.1): Conv2d(1488, 192, kernel_size=(1, 1), stride=(1, 1), bias=False)
-        (norm.2): BatchNorm2d(192, eps=1e-05, momentum=0.1, affine=True)
-        (relu.2): ReLU(inplace)
-        (conv.2): Conv2d(192, 48, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
-      )
-      (denselayer11): _DenseLayer(
-        (norm.1): BatchNorm2d(1536, eps=1e-05, momentum=0.1, affine=True)
-        (relu.1): ReLU(inplace)
-        (conv.1): Conv2d(1536, 192, kernel_size=(1, 1), stride=(1, 1), bias=False)
-        (norm.2): BatchNorm2d(192, eps=1e-05, momentum=0.1, affine=True)
-        (relu.2): ReLU(inplace)
-        (conv.2): Conv2d(192, 48, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
-      )
-      (denselayer12): _DenseLayer(
-        (norm.1): BatchNorm2d(1584, eps=1e-05, momentum=0.1, affine=True)
-        (relu.1): ReLU(inplace)
-        (conv.1): Conv2d(1584, 192, kernel_size=(1, 1), stride=(1, 1), bias=False)
-        (norm.2): BatchNorm2d(192, eps=1e-05, momentum=0.1, affine=True)
-        (relu.2): ReLU(inplace)
-        (conv.2): Conv2d(192, 48, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
-      )
-      (denselayer13): _DenseLayer(
-        (norm.1): BatchNorm2d(1632, eps=1e-05, momentum=0.1, affine=True)
-        (relu.1): ReLU(inplace)
-        (conv.1): Conv2d(1632, 192, kernel_size=(1, 1), stride=(1, 1), bias=False)
-        (norm.2): BatchNorm2d(192, eps=1e-05, momentum=0.1, affine=True)
-        (relu.2): ReLU(inplace)
-        (conv.2): Conv2d(192, 48, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
-      )
-      (denselayer14): _DenseLayer(
-        (norm.1): BatchNorm2d(1680, eps=1e-05, momentum=0.1, affine=True)
-        (relu.1): ReLU(inplace)
-        (conv.1): Conv2d(1680, 192, kernel_size=(1, 1), stride=(1, 1), bias=False)
-        (norm.2): BatchNorm2d(192, eps=1e-05, momentum=0.1, affine=True)
-        (relu.2): ReLU(inplace)
-        (conv.2): Conv2d(192, 48, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
-      )
-      (denselayer15): _DenseLayer(
-        (norm.1): BatchNorm2d(1728, eps=1e-05, momentum=0.1, affine=True)
-        (relu.1): ReLU(inplace)
-        (conv.1): Conv2d(1728, 192, kernel_size=(1, 1), stride=(1, 1), bias=False)
-        (norm.2): BatchNorm2d(192, eps=1e-05, momentum=0.1, affine=True)
-        (relu.2): ReLU(inplace)
-        (conv.2): Conv2d(192, 48, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
-      )
-      (denselayer16): _DenseLayer(
-        (norm.1): BatchNorm2d(1776, eps=1e-05, momentum=0.1, affine=True)
-        (relu.1): ReLU(inplace)
-        (conv.1): Conv2d(1776, 192, kernel_size=(1, 1), stride=(1, 1), bias=False)
-        (norm.2): BatchNorm2d(192, eps=1e-05, momentum=0.1, affine=True)
-        (relu.2): ReLU(inplace)
-        (conv.2): Conv2d(192, 48, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
-      )
-      (denselayer17): _DenseLayer(
-        (norm.1): BatchNorm2d(1824, eps=1e-05, momentum=0.1, affine=True)
-        (relu.1): ReLU(inplace)
-        (conv.1): Conv2d(1824, 192, kernel_size=(1, 1), stride=(1, 1), bias=False)
-        (norm.2): BatchNorm2d(192, eps=1e-05, momentum=0.1, affine=True)
-        (relu.2): ReLU(inplace)
-        (conv.2): Conv2d(192, 48, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
-      )
-      (denselayer18): _DenseLayer(
-        (norm.1): BatchNorm2d(1872, eps=1e-05, momentum=0.1, affine=True)
-        (relu.1): ReLU(inplace)
-        (conv.1): Conv2d(1872, 192, kernel_size=(1, 1), stride=(1, 1), bias=False)
-        (norm.2): BatchNorm2d(192, eps=1e-05, momentum=0.1, affine=True)
-        (relu.2): ReLU(inplace)
-        (conv.2): Conv2d(192, 48, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
-      )
-      (denselayer19): _DenseLayer(
-        (norm.1): BatchNorm2d(1920, eps=1e-05, momentum=0.1, affine=True)
-        (relu.1): ReLU(inplace)
-        (conv.1): Conv2d(1920, 192, kernel_size=(1, 1), stride=(1, 1), bias=False)
-        (norm.2): BatchNorm2d(192, eps=1e-05, momentum=0.1, affine=True)
-        (relu.2): ReLU(inplace)
-        (conv.2): Conv2d(192, 48, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
-      )
-      (denselayer20): _DenseLayer(
-        (norm.1): BatchNorm2d(1968, eps=1e-05, momentum=0.1, affine=True)
-        (relu.1): ReLU(inplace)
-        (conv.1): Conv2d(1968, 192, kernel_size=(1, 1), stride=(1, 1), bias=False)
-        (norm.2): BatchNorm2d(192, eps=1e-05, momentum=0.1, affine=True)
-        (relu.2): ReLU(inplace)
-        (conv.2): Conv2d(192, 48, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
-      )
-      (denselayer21): _DenseLayer(
-        (norm.1): BatchNorm2d(2016, eps=1e-05, momentum=0.1, affine=True)
-        (relu.1): ReLU(inplace)
-        (conv.1): Conv2d(2016, 192, kernel_size=(1, 1), stride=(1, 1), bias=False)
-        (norm.2): BatchNorm2d(192, eps=1e-05, momentum=0.1, affine=True)
-        (relu.2): ReLU(inplace)
-        (conv.2): Conv2d(192, 48, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
-      )
-      (denselayer22): _DenseLayer(
-        (norm.1): BatchNorm2d(2064, eps=1e-05, momentum=0.1, affine=True)
-        (relu.1): ReLU(inplace)
-        (conv.1): Conv2d(2064, 192, kernel_size=(1, 1), stride=(1, 1), bias=False)
-        (norm.2): BatchNorm2d(192, eps=1e-05, momentum=0.1, affine=True)
-        (relu.2): ReLU(inplace)
-        (conv.2): Conv2d(192, 48, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
-      )
-      (denselayer23): _DenseLayer(
-        (norm.1): BatchNorm2d(2112, eps=1e-05, momentum=0.1, affine=True)
-        (relu.1): ReLU(inplace)
-        (conv.1): Conv2d(2112, 192, kernel_size=(1, 1), stride=(1, 1), bias=False)
-        (norm.2): BatchNorm2d(192, eps=1e-05, momentum=0.1, affine=True)
-        (relu.2): ReLU(inplace)
-        (conv.2): Conv2d(192, 48, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
-      )
-      (denselayer24): _DenseLayer(
-        (norm.1): BatchNorm2d(2160, eps=1e-05, momentum=0.1, affine=True)
-        (relu.1): ReLU(inplace)
-        (conv.1): Conv2d(2160, 192, kernel_size=(1, 1), stride=(1, 1), bias=False)
-        (norm.2): BatchNorm2d(192, eps=1e-05, momentum=0.1, affine=True)
-        (relu.2): ReLU(inplace)
-        (conv.2): Conv2d(192, 48, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
-      )
-    )
-    (norm5): BatchNorm2d(2208, eps=1e-05, momentum=0.1, affine=True)
+    (0): Conv2d (3, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (1): ReLU(inplace)
+    (2): Conv2d (64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (3): ReLU(inplace)
+    (4): MaxPool2d(kernel_size=(2, 2), stride=(2, 2), dilation=(1, 1))
+    (5): Conv2d (64, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (6): ReLU(inplace)
+    (7): Conv2d (128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (8): ReLU(inplace)
+    (9): MaxPool2d(kernel_size=(2, 2), stride=(2, 2), dilation=(1, 1))
+    (10): Conv2d (128, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (11): ReLU(inplace)
+    (12): Conv2d (256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (13): ReLU(inplace)
+    (14): Conv2d (256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (15): ReLU(inplace)
+    (16): MaxPool2d(kernel_size=(2, 2), stride=(2, 2), dilation=(1, 1))
+    (17): Conv2d (256, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (18): ReLU(inplace)
+    (19): Conv2d (512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (20): ReLU(inplace)
+    (21): Conv2d (512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (22): ReLU(inplace)
+    (23): MaxPool2d(kernel_size=(2, 2), stride=(2, 2), dilation=(1, 1))
+    (24): Conv2d (512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (25): ReLU(inplace)
+    (26): Conv2d (512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (27): ReLU(inplace)
+    (28): Conv2d (512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (29): ReLU(inplace)
+    (30): MaxPool2d(kernel_size=(2, 2), stride=(2, 2), dilation=(1, 1))
   )
-  (classifier): Linear(in_features=2208, out_features=1000, bias=True)
+  (classifier): Sequential(
+    (0): Linear(in_features=25088, out_features=4096)
+    (1): ReLU(inplace)
+    (2): Dropout(p=0.5)
+    (3): Linear(in_features=4096, out_features=4096)
+    (4): ReLU(inplace)
+    (5): Dropout(p=0.5)
+    (6): Linear(in_features=4096, out_features=1000)
+  )
 )</pre>
 </div>
 
@@ -12841,13 +12236,15 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># TODO: Write a function that loads a checkpoint and rebuilds the model</span>
 <span class="k">def</span> <span class="nf">load_checkpoint</span><span class="p">(</span><span class="n">filepath</span><span class="p">):</span>
     <span class="n">load_checkpoint</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">filepath</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">load_checkpoint</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">classifier</span> <span class="o">=</span> <span class="n">load_checkpoint</span><span class="p">[</span><span class="s1">&#39;classifier&#39;</span><span class="p">]</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">class_to_idx</span> <span class="o">=</span> <span class="n">load_checkpoint</span><span class="p">[</span><span class="s1">&#39;class_to_idx&#39;</span><span class="p">]</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">load_state_dict</span><span class="p">(</span><span class="n">load_checkpoint</span><span class="p">[</span><span class="s1">&#39;state_dict&#39;</span><span class="p">])</span>
 </pre></div>
 
 </div>
@@ -12878,7 +12275,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[43]:</div>
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#import os</span>
@@ -12929,7 +12326,7 @@ div#notebook {
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[43]:</div>
+<div class="prompt output_prompt">Out[7]:</div>
 
 
 
@@ -13071,7 +12468,7 @@ height=263
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[46]:</div>
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="n">image_path</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">topk</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>
@@ -13080,23 +12477,21 @@ height=263
     <span class="n">tmp_class</span><span class="p">,</span> <span class="n">tmp_prob</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(),</span> <span class="nb">list</span><span class="p">()</span>
     <span class="c1"># TODO: Implement the code to predict the class from an image file</span>
     <span class="n">torch_img</span> <span class="o">=</span> <span class="n">process_image</span><span class="p">(</span><span class="n">image_path</span><span class="p">)</span>
-    <span class="n">loaded_model</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">vgg16</span><span class="p">(</span><span class="n">pretrained</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="n">loaded_model</span><span class="o">.</span><span class="n">classifier</span> <span class="o">=</span> <span class="n">model</span><span class="p">[</span><span class="s1">&#39;classifier&#39;</span><span class="p">]</span>
-    <span class="n">loaded_model</span><span class="o">.</span><span class="n">load_state_dict</span><span class="p">(</span><span class="n">model</span><span class="p">[</span><span class="s1">&#39;state_dict&#39;</span><span class="p">])</span>
-    <span class="n">loaded_model</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span>
+    
+    <span class="n">model</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span>
     <span class="n">torch_img</span><span class="o">.</span><span class="n">unsqueeze_</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
     <span class="n">data</span> <span class="o">=</span> <span class="n">Variable</span><span class="p">(</span><span class="n">torch_img</span><span class="p">,</span> <span class="n">volatile</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">type</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">FloatTensor</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">()</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
-        <span class="n">loaded_model</span><span class="o">.</span><span class="n">cuda</span><span class="p">()</span>
+        <span class="n">model</span><span class="o">.</span><span class="n">cuda</span><span class="p">()</span>
         <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">cuda</span><span class="p">()</span>
     
-    <span class="n">output</span> <span class="o">=</span> <span class="n">loaded_model</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="n">output</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
     <span class="n">ps</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
     <span class="n">tensor_prob</span><span class="p">,</span> <span class="n">tensor_class</span> <span class="o">=</span> <span class="n">ps</span><span class="o">.</span><span class="n">topk</span><span class="p">(</span><span class="n">topk</span><span class="p">)</span>
    <span class="c1"># print(model[&#39;class_to_idx&#39;][tensor_class.data[0][0]])</span>
    <span class="c1"># print(model[&#39;class_to_idx&#39;])</span>
-    <span class="n">inv_class</span> <span class="o">=</span> <span class="p">{</span><span class="n">v</span><span class="p">:</span><span class="n">k</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">model</span><span class="p">[</span><span class="s1">&#39;class_to_idx&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
+    <span class="n">inv_class</span> <span class="o">=</span> <span class="p">{</span><span class="n">v</span><span class="p">:</span><span class="n">k</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">model</span><span class="o">.</span><span class="n">class_to_idx</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
     <span class="c1">#for val in tensor_class[0].data:</span>
     <span class="c1">#    if str(val) in model[&#39;class_to_idx&#39;]:</span>
     <span class="c1">#        print(val)</span>
@@ -13108,9 +12503,9 @@ height=263
     <span class="c1">#return tensor_prob, tensor_class</span>
     <span class="k">return</span> <span class="n">tmp_prob</span><span class="p">,</span> <span class="n">tmp_class</span>
 
-<span class="n">chkp</span> <span class="o">=</span> <span class="n">load_checkpoint</span><span class="p">(</span><span class="s1">&#39;checkpoint.pth&#39;</span><span class="p">)</span>
+<span class="n">load_checkpoint</span><span class="p">(</span><span class="s1">&#39;checkpoint.pth&#39;</span><span class="p">)</span>
 
-<span class="n">probs</span><span class="p">,</span> <span class="n">classes</span> <span class="o">=</span> <span class="n">predict</span><span class="p">(</span><span class="n">test_dir</span><span class="o">+</span><span class="s2">&quot;/&quot;</span><span class="o">+</span><span class="s2">&quot;93/image_06031.jpg&quot;</span><span class="p">,</span> <span class="n">chkp</span><span class="p">)</span>
+<span class="n">probs</span><span class="p">,</span> <span class="n">classes</span> <span class="o">=</span> <span class="n">predict</span><span class="p">(</span><span class="n">test_dir</span><span class="o">+</span><span class="s2">&quot;/&quot;</span><span class="o">+</span><span class="s2">&quot;93/image_06031.jpg&quot;</span><span class="p">,</span> <span class="n">model</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">probs</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">classes</span><span class="p">)</span>
 </pre></div>
@@ -13135,23 +12530,6 @@ height=263
 </div>
 </div>
 
-<div class="output_area">
-
-<div class="prompt"></div>
-
-
-
-
-<div class="output_png output_subarea ">
-<img src="data:image/png;base64,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
-"
-width=380
-height=263
->
-</div>
-
-</div>
-
 </div>
 </div>
 
@@ -13169,12 +12547,12 @@ height=263
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[64]:</div>
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># TODO: Display an image along with the top 5 classes</span>
 
-<span class="n">probs</span><span class="p">,</span> <span class="n">classes</span> <span class="o">=</span> <span class="n">predict</span><span class="p">(</span><span class="n">test_dir</span><span class="o">+</span><span class="s2">&quot;/&quot;</span><span class="o">+</span><span class="s2">&quot;93/image_06031.jpg&quot;</span><span class="p">,</span> <span class="n">chkp</span><span class="p">)</span>
+<span class="n">probs</span><span class="p">,</span> <span class="n">classes</span> <span class="o">=</span> <span class="n">predict</span><span class="p">(</span><span class="n">test_dir</span><span class="o">+</span><span class="s2">&quot;/&quot;</span><span class="o">+</span><span class="s2">&quot;93/image_06031.jpg&quot;</span><span class="p">,</span> <span class="n">model</span><span class="p">)</span>
 
 <span class="n">base_color</span> <span class="o">=</span> <span class="n">sb</span><span class="o">.</span><span class="n">color_palette</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
 
